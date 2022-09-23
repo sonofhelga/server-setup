@@ -42,7 +42,10 @@ apt install nano
 
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
+
 useradd -m -s /bin/bash $name 
+clear
+echo "what would you like your password to be?"
 passwd $name
 usermod -aG $group $name
 
