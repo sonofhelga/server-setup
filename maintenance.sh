@@ -42,7 +42,8 @@ apt install nano
 
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
-useradd -m -s /bin/bash $name && passwd $name
+useradd -m -s /bin/bash $name 
+passwd $name
 usermod -aG $group $name
 
 clear
