@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "i hope you're root or you're gonna have a bad time."
-sleep 3
+echo "if youre not root cancel, otherwise, enter to continue"
+read waiting
 
 clear
 echo "what would you like your new username to be?"
