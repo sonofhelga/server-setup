@@ -38,14 +38,12 @@ sleep 1
 
 apt update -y && apt full-upgrade -y
 
-apt install nano
+apt install nano -y
+apt install ufw -y
 
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
-
 useradd -m -s /bin/bash $name 
-clear
-echo "what would you like your password to be?"
 passwd $name
 usermod -aG $group $name
 
@@ -84,7 +82,10 @@ cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
 
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
-clear
+ufw default allow outgoing
+ufw default deny incoming
+ufw allow ssh
+
 echo "about to remove root password, so just checking in."
 echo "enter to continue."
 read waiting
