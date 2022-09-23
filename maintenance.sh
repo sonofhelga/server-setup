@@ -10,6 +10,16 @@ read name
 echo "great, username is $name"
 sleep 1
 
+echo "check which group we want to add for sudo access."
+sleep 3
+
+EDITOR=nano visudo
+
+echo "which group did we want to add for sudo usage? (its probably just 'sudo'"
+read group
+
+usermod -aG $group $name
+
 echo "im also going to need your ip address (this should be static)"
 echo "can you fill this in w/ format xxx.xxx.xxx.xxx"
 ip a | grep inet
@@ -19,7 +29,7 @@ clear
 echo "okay, ip is $ipaddress"
 
 clear
-echo "starting setup -- gonna need some creds in a second"
+echo "starting setup."
 sleep 1
 
 
@@ -30,16 +40,6 @@ apt install nano
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
 useradd -m -s /bin/bash $name && passwd $name
-
-echo "check which group we want to add for sudo access."
-sleep 3
-
-EDITOR=nano visudo
-
-echo "which group did we want to add for sudo usage? (its probably just 'sudo'"
-read group
-
-usermod -aG $group $name
 
 groups $name
 echo "look correct?"
