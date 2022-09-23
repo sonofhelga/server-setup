@@ -2,30 +2,33 @@
 
 echo "i hope you're root or you're gonna have a bad time."
 sleep 3
-clear
 
+clear
 echo "what would you like your new username to be?"
 read name
 
+clear
 echo "great, username is $name"
 sleep 1
 
+clear
 echo "check which group we want to add for sudo access."
 sleep 3
 
 EDITOR=nano visudo
 
+clear
 echo "which group did we want to add for sudo usage? (its probably just 'sudo'"
 read group
 
 
-
+clear
 echo "im also going to need your ip address (this should be static)"
 echo "can you fill this in w/ format xxx.xxx.xxx.xxx"
 ip a | grep inet
 read ipaddress
-clear
 
+clear
 echo "okay, ip is $ipaddress"
 
 clear
@@ -45,12 +48,12 @@ usermod -aG $group $name
 groups $name
 echo "look correct?"
 sleep 2
-clear
 
+clear
 echo "good."
 sleep 1
-clear
 
+clear
 echo "lets make sure things are working"
 su $name
 
