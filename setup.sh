@@ -84,6 +84,7 @@ cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 ufw default allow outgoing
 ufw default deny incoming
 ufw allow ssh
+ufw enable
 
 echo "about to remove root password, so just checking in."
 echo "enter to continue."
