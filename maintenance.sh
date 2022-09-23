@@ -85,4 +85,3 @@ echo "enter to continue."
 read waiting
 
 sudo passwd -l root
-
