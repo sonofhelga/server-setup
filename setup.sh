@@ -38,8 +38,7 @@ sleep 1
 
 apt update -y && apt full-upgrade -y
 
-apt install nano -y
-apt install ufw -y
+apt install nano ufw curl -y
 
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
