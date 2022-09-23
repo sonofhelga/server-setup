@@ -18,7 +18,7 @@ EDITOR=nano visudo
 echo "which group did we want to add for sudo usage? (its probably just 'sudo'"
 read group
 
-usermod -aG $group $name
+
 
 echo "im also going to need your ip address (this should be static)"
 echo "can you fill this in w/ format xxx.xxx.xxx.xxx"
@@ -40,10 +40,11 @@ apt install nano
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
 useradd -m -s /bin/bash $name && passwd $name
+usermod -aG $group $name
 
 groups $name
 echo "look correct?"
-sleep 3
+sleep 2
 clear
 
 echo "good."
