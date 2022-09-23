@@ -11,14 +11,9 @@ clear
 echo "great, username is $name"
 sleep 1
 
-clear
-echo "check which group we want to add for sudo access."
-sleep 3
-
-EDITOR=nano visudo
 
 clear
-echo "which group did we want to add for sudo usage? (its probably just 'sudo'"
+echo "which group did we want to add for sudo usage? (its probably just 'sudo')"
 read group
 
 
@@ -42,7 +37,9 @@ apt install nano ufw curl -y
 
 apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
 
+clear
 useradd -m -s /bin/bash $name 
+echo "what would you like your password to be?"
 passwd $name
 usermod -aG $group $name
 
