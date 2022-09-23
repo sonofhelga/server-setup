@@ -10,6 +10,14 @@ read name
 echo "great, username is $name"
 sleep 1
 
+echo "im also going to need your ip address (this should be static)"
+echo "can you fill this in w/ format xxx.xxx.xxx.xxx"
+ip a | grep inet
+read ipaddress
+clear
+
+echo "okay, ip is $ipaddress"
+
 clear
 echo "starting setup -- gonna need some creds in a second"
 sleep 1
@@ -50,11 +58,9 @@ sudo apt update -y
 exit
 clear
 echo "take this:"
-echo "ssh-copy-id -i ~/.ssh/id_rsa.pub $name@" 
-echo "go ahead and send over your ssh creds, just fill in the ip ill wait."
+echo "ssh-copy-id -i ~/.ssh/id_rsa.pub $name@$ipaddress" 
+echo "go ahead and send over your ssh creds, ill wait."
 echo "(but dont close this terminal)"
-echo ""
-ip a | grep inet
 echo "press enter when ready to go"
 read waiting
 
@@ -64,6 +70,7 @@ echo "press enter when ready to go"
 read waiting
 
 clear
+mv ./sshd_config /etc/ssh/sshd_config
 systemctl restart sshd
 
 apt install fail2ban -y
