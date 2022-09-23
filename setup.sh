@@ -85,4 +85,5 @@ echo "about to remove root password, so just checking in."
 echo "enter to continue."
 read waiting
 
-sudo passwd -l root
+passwd -l root
+reboot
