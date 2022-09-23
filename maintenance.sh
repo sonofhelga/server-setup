@@ -36,7 +36,7 @@ echo "starting setup."
 sleep 1
 
 
-apt update -y && apt full-upgrade
+apt update -y && apt full-upgrade -y
 
 apt install nano
 
@@ -45,21 +45,18 @@ apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-up
 useradd -m -s /bin/bash $name && passwd $name
 usermod -aG $group $name
 
+clear
 groups $name
 echo "look correct?"
-sleep 2
+echo "the top line shoud say: $name $group"
+echo "enter to continue"
+read waiting
 
 clear
 echo "good."
 sleep 1
 
-clear
-echo "lets make sure things are working"
-su $name
 
-sudo apt update -y
-
-exit
 clear
 echo "take this:"
 echo "ssh-copy-id -i ~/.ssh/id_rsa.pub $name@$ipaddress" 
@@ -82,3 +79,10 @@ apt install fail2ban -y
 cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
 
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+echo "about to remove root password, so just checking in."
+echo "enter to continue."
+read waiting
+
+sudo passwd -l root
+
