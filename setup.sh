@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "if youre not root cancel, otherwise, enter to continue"
+echo "setting up server, enter to continue"
 read waiting
 
 clear
@@ -20,7 +20,7 @@ read group
 clear
 echo "im also going to need your ip address (this should be static)"
 echo "can you fill this in w/ format xxx.xxx.xxx.xxx"
-ip a | grep inet
+sudo ip a | grep inet
 read ipaddress
 
 clear
@@ -31,20 +31,20 @@ echo "starting setup."
 sleep 1
 
 
-apt update -y && apt full-upgrade -y
+sudo apt update -y && sudo apt full-upgrade -y
 
-apt install nano ufw curl -y
+sudo apt install nano ufw curl -y
 
-apt install unattended-upgrades && dpkg-reconfigure --priority=low unattended-upgrades
+sudo apt install unattended-upgrades && sudo dpkg-reconfigure --priority=low unattended-upgrades
 
 clear
-useradd -m -s /bin/bash $name 
+sudo useradd -m -s /bin/bash $name 
 echo "what would you like your password to be?"
-passwd $name
-usermod -aG $group $name
+sudo passwd $name
+sudo usermod -aG $group $name
 
 clear
-groups $name
+sudo groups $name
 echo "look correct?"
 echo "the top line shoud say: $name $group"
 echo "enter to continue"
@@ -69,19 +69,19 @@ echo "press enter when ready to go"
 read waiting
 
 clear
-mv ./sshd_config /etc/ssh/sshd_config
-systemctl restart sshd
+sudo mv ./sshd_config /etc/ssh/sshd_config
+sudo systemctl restart sshd
 
-apt install fail2ban -y
+sudo apt install fail2ban -y
 
-cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
+sudo cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
 
-cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
-ufw default allow outgoing
-ufw default deny incoming
-ufw allow ssh
-ufw enable
+sudo ufw default allow outgoing
+sudo ufw default deny incoming
+sudo ufw allow ssh
+sudo ufw enable
 
 echo "about to remove root password, so just checking in."
 echo "enter to continue."
